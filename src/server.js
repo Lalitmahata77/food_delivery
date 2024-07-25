@@ -10,8 +10,9 @@ app.use(cookieParser())
 
 
 import authRouter from "./route/authRoute.js"
+import resturantRouter from "./route/resturantRoute.js"
 app.use("/api/v2", authRouter)
-
+app.use("/api/v2", resturantRouter)
 app.listen(PORT, ()=>{
     connectMongoDb()
     console.log(`server is listening on port ${PORT}`);
