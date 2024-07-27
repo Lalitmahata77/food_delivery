@@ -10,5 +10,5 @@ router.route("/getResturantByUserId/:id").get(getResturantByUserId)
 router.route("/deleteResturant/:id").delete(isAuthenticated,deleteResturant)
 router.route("/searchResturant").get(searchResturant)
 router.route("/favorites").get(favoritesResturant)
-router.route("/updateResturantStatus/:id").put(updateResturantStatus)
+router.route("/updateResturantStatus/:id").put(isAuthenticated,updateResturantStatus)
 export default router
