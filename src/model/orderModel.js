@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema({
     customer : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : " User"
+        ref : " User",
+        strictPopulate: false
     },
     resturant : {
         type : mongoose.Schema.Types.ObjectId,
@@ -19,12 +20,10 @@ const orderSchema = new mongoose.Schema({
 type : mongoose.Schema.Types.ObjectId,
 ref : "OrderItems"
     }],
-    // payment : {
-    //     type : mongoose.Schema.Types.ObjectId,
-    //     ref : "Payment"
-    // },
+    
     totalItem : Number,
-    totalPrice : Number
+    totalPrice : Number,
+    
 },{timestamps : true})
 const Order = mongoose.model("Order", orderSchema)
 export default Order

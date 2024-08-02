@@ -22,20 +22,23 @@ export const deleteFood = catchAsychError(async(req,res)=>{
 
 export const getResturantFood = catchAsychError(async(req,res,next)=>{
     const {vegetarian, nonveg, seasonal, foodCategory} = req.query;
-    const {resturantId} = req.params;
-    let query = {resturantId}
-    if (vegetarian == true) {
-        query.isVegetarian = true
-    }
-    if (nonveg == true) query.vegetarian = false
-    if (seasonal == true) query.isSeasonal = true
-    if (foodCategory ) query.foodCategory = foodCategory
+    // const {resturantId} = req.resturant?._id;
+ 
+    // if (vegetarian == true) {
+    //     resturantId.isVegetarian = true
+    // }
+    // if (nonveg == true) resturantId.vegetarian = false
+    // if (seasonal == true) resturantId.isSeasonal = true
+    // if (foodCategory ) resturantId.foodCategory = foodCategory
 
-const foods = await Food.find(query).populate([
-    {path : "ingredients", populate:{path : "category", select : "name"}},
-    foodCategory,
-    {path : "resturant", select : "name _id"}
-])
+const foods = await Food.find(req.resturant?._id)
+.populate("ingredients")
+.populate("resturant", "name _id")
+// .populate([
+//     {path :"ingredients", populate:{path : "category",select : "name"}},
+//     foodCategory,
+//     {path : "resturant", select : "name _id"}
+// ])
 res.status(200).json({foods})
 })
 

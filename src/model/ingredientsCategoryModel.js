@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
 
 const ingredientsModelSchema = new mongoose.Schema({
-name : String,
+name :{
+    type : String
+} ,
 resturant : {
     type : mongoose.Schema.Types.ObjectId,
     ref : "Resturant"
 },
 ingredients : [{
-    type : mongoose.Schema.ObjectId.ObjectId,
+    type : mongoose.Schema.Types.ObjectId,
     ref : "IngredientsItem"
 }]
 },{timestamps : true})
